@@ -101,7 +101,8 @@ public class TaikhoanController {
 		kh.setEmail(request.getEmail());
 		kh.setGioitinh(request.getGioitinh());
 		kh.setSdt(request.getSdt());
-		kh.setPhoto(request.getPhoto());
+		if(request.getPhoto() != null)
+			kh.setPhoto(request.getPhoto());
 		Diachi dc = null;
 		if(!request.getListDC().isEmpty()) {
 			dc = request.getListDC().get(0);

@@ -1,11 +1,11 @@
 package com.abc.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
+import com.abc.client.MomoClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -72,7 +72,12 @@ public class DonhangController {
 		
 		return donhangRepository.findAllByKhachhang(khachhang);	
 	}
-	
+
+	@PostMapping("/donhang/getPayUrl")
+	public ResponseEntity<?> getPayUrl(Principal principal, @RequestBody Object object) {
+		return new ResponseEntity<>(MomoClient.getPayUrl(object), HttpStatus.OK);
+	}
+
 	@PostMapping("/donhang")
 	ResponseEntity<CustomResponse> getOrder(Principal principal, @Validated @RequestBody DathangRequest request) throws Exception{
 		String madh = "DH" +  System.currentTimeMillis() % 100000000;
