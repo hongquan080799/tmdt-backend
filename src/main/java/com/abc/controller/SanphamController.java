@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -33,7 +34,10 @@ import com.abc.utils.PageUltils;
 @RestController
 @CrossOrigin
 public class SanphamController {
-	
+
+	@Autowired
+	RedisTemplate redisTemplate;
+
 	@Autowired
 	SanphamRepository sanphamRepository;
 	
@@ -103,6 +107,8 @@ public class SanphamController {
 	
 	@GetMapping("/sanpham/{masp}")
 	public Sanpham getSanphamByMasp(@PathVariable("masp") String masp) {
+		//redisTemplate.opsForValue().set("name", "quan");
+
 		return sanphamRepository.findById(masp).get();
 	}
 	

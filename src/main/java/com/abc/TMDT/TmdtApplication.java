@@ -16,7 +16,7 @@ import jdk.javadoc.doclet.Reporter;
 //@EnableJdbcHttpSession
 @EntityScan("com.abc.entity")
 @EnableJpaRepositories("com.abc.repository")
-@ComponentScan({"com.abc.controller","com.abc.jwt.configs","com.abc.service"})
+@ComponentScan({"com.abc.controller","com.abc.jwt.configs","com.abc.service","com.abc.redis", "com.abc.client"})
 public class TmdtApplication {
 	
 	

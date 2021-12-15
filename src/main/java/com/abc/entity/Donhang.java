@@ -31,6 +31,13 @@ public class Donhang {
 	int hinhthucthanhtoan;
 	String madhGhn;
 	String diachi;
+	String refundLinkPaypal;
+
+	@ManyToOne
+	@JoinColumn(name = "voucher")
+	Voucher voucher;
+
+
 	
 	@OneToMany(mappedBy = "donhang", cascade = CascadeType.ALL)
 	List<CTDH> listCTDH;
@@ -59,12 +66,15 @@ public class Donhang {
 		this.tongtien = tongtien;
 	}
 
-	
 
-	
+	public String getRefundLinkPaypal() {
+		return refundLinkPaypal;
+	}
 
-	
-	
+	public void setRefundLinkPaypal(String refundLinkPaypal) {
+		this.refundLinkPaypal = refundLinkPaypal;
+	}
+
 	public String getDiachi() {
 		return diachi;
 	}
@@ -128,6 +138,12 @@ public class Donhang {
 	public void setKhachhang(Khachhang khachhang) {
 		this.khachhang = khachhang;
 	}
-	
-	
+
+	public Voucher getVoucher() {
+		return voucher;
+	}
+
+	public void setVoucher(Voucher voucher) {
+		this.voucher = voucher;
+	}
 }

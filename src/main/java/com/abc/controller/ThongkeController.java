@@ -29,17 +29,19 @@ public class ThongkeController {
 	
 	@GetMapping("/thongke")
 	public List<ThongkeResponse> getListResponseDanhGia(@RequestParam("from") Date from, @RequestParam("to") Date to){
-		Query query = entityManager.createNativeQuery("call SP_THONGKE (?1,?2)");
+		String sql = "select s.MASP, s.TENSP , round(sum(c.SOLUONG * c.GIA), 2 )from " +
+					"sanpham s join ctdh c on s.MASP = c.MASP " +
+					"JOIN donhang d on d.MADH = c.MADH " +
+					"where d.NGAYDAT >= ?1 and d.NGAYDAT <= ?2 " +
+					"GROUP by s.MASP";
+		Query query = entityManager.createNativeQuery(sql);
 		query.setParameter(1, from);
 		query.setParameter(2, to);
 		
 		List<Object[]> list = query.getResultList();
 		List<ThongkeResponse> myList = new ArrayList<>();
 		for(Object[] result : list) {
-			ThongkeResponse tk = new ThongkeResponse();
-			tk.setMasp((String)result[0]);
-			tk.setTensp((String) result[1]);
-			tk.setDoanhthu(((Double) result[2]).doubleValue());
+			ThongkeResponse tk = new ThongkeResponse(result);
 			myList.add(tk);
 		}
 		
@@ -48,7 +50,20 @@ public class ThongkeController {
 	
 	@GetMapping("/lailo")
 	public List<LailoResponse> getListResponseLaiLo(@RequestParam("from") Date from, @RequestParam("to") Date to){
-		Query query = entityManager.createNativeQuery("call SP_LAILO (?1,?2)");
+		String sql =
+				"select s.MASP, s.TENSP , round(sum(c.SOLUONG * c.GIA - cp.SOLUONG * cp.DONGIA) , 2 ) as tonggia from " +
+				"sanpham s " +
+				"join ctdh c on s.MASP = c.MASP " +
+				"JOIN donhang d on d.MADH = c.MADH " +
+				"JOIN ct_phatsinh cp on cp.MASP = s.MASP " +
+				"JOIN phatsinh p on p.ID = cp.MAPHIEU " +
+				"where d.NGAYDAT >= ?1 " +
+				"and d.NGAYDAT <= ?2 " +
+				"and p.NGAY  >= ?1 " +
+				"and p.NGAY <= ?2 " +
+				"GROUP by s.MASP " +
+				"ORDER by tonggia ASC ";
+		Query query = entityManager.createNativeQuery(sql);
 		query.setParameter(1, from);
 		query.setParameter(2, to);
 		

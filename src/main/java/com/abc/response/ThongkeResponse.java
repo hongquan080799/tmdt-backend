@@ -4,6 +4,11 @@ public class ThongkeResponse {
 	String masp;
 	String tensp;
 	Double doanhthu;
+	public ThongkeResponse(Object[] object){
+		this.masp = (String) object[0];
+		this.tensp = (String) object[1];
+		this.doanhthu = (Double) object[2];
+	}
 	public String getMasp() {
 		return masp;
 	}

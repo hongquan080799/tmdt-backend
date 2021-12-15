@@ -22,6 +22,28 @@
 		    <artifactId>spring-session-jdbc</artifactId>
 		</dependency> -->
 		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180130</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.iharder/base64 -->
+		<dependency>
+			<groupId>net.iharder</groupId>
+			<artifactId>base64</artifactId>
+			<version>2.3.8</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
@@ -46,8 +68,17 @@
 		<dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
-		    <version>8.0.21</version>
+		    <version>8.0.27</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf -->
+		<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf -->
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf</artifactId>
+			<version>3.0.11.RELEASE</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

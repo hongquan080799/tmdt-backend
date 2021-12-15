@@ -28,6 +28,7 @@ public class DathangRequest {
 	}
 	
 	List<Sanpham> listSP;
+	String voucherId;;
 	String madhGhn;
 	String diachi;
 	int httt; //hinh thuc thanh toan;
@@ -55,7 +56,12 @@ public class DathangRequest {
 	public void setDiachi(String diachi) {
 		this.diachi = diachi;
 	}
-	
-	
-	
+
+	public String getVoucherId() {
+		return voucherId;
+	}
+
+	public void setVoucherId(String voucherId) {
+		this.voucherId = voucherId;
+	}
 }
